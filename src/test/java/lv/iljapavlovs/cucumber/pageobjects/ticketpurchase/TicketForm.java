@@ -27,8 +27,11 @@ public class TicketForm extends Page {
     @FindBy(css = "#ticket_form .voucher input")
     private WebElement inptCouponCodeInput;
 
-    @FindBy(css = "small.error")
+    @FindBy(css = ".voucher small.error")
     private WebElement smlValidationError;
+
+    @FindBy(css = ".voucher button")
+    private WebElement btnSubmitVoucher;
 
 
     public TicketForm() {
@@ -60,6 +63,7 @@ public class TicketForm extends Page {
 
     public TicketForm submitCouponCode(String couponCode) {
         WebElementHelper.sendKeys(inptCouponCodeInput, couponCode);
+        WebElementHelper.click(btnSubmitVoucher);
         return this;
     }
 

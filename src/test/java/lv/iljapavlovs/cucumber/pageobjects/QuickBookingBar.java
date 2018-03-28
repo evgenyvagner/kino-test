@@ -104,9 +104,7 @@ public class QuickBookingBar extends Page {
                 sessionAvailableInDays = isSessionAvailableInDays(i, days);
             }
         }
-
         getSessionsElementInDays(days).get(0).findElement(By.xpath("following-sibling::option[not(@disabled)]")).click();
-
         return this;
     }
 

@@ -44,6 +44,6 @@ public class TicketSelectionSteps {
 
     @Then("^Ticket Selection - validation error is displayed$")
     public void ticketSelectionValidationErrorIsDisplayed() throws Throwable {
-        assertThat(ticketForm.isCouponValidationErrorDisplayed());
+        assertThat(ticketForm.isCouponValidationErrorDisplayed()).isTrue();
     }
 }

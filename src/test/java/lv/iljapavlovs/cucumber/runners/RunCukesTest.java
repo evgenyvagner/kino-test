@@ -4,14 +4,16 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
+/**
+ * This file should not be used. cucumber-jvm-parallel-plugin is used by default in pom.xml
+ */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber/cheese", "json:target/cucumber/cucumber-cheese.json"},
+        plugin = {"pretty", "html:target/cucumber/all", "json:target/cucumber/cucumber-all.json"},
         features = {"src/test/resources/features"},
-        tags = {"@cheese"},
+        tags = {"@all"},
         glue = {"lv.iljapavlovs.cucumber.stepdefs", "lv.iljapavlovs.cucumber.hooks"}
 )
-public class RunCukesCheeseTest {
+public class RunCukesTest {
 
 }
-

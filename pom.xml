@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <groupId>lv.iljapavlovs.cucumber</groupId>
-    <artifactId>cucumber-jvm-parallel-template</artifactId>
+    <artifactId>kino-test</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>CucumberJVM Parallel Template</name>
+    <name>Cinamon Kino Test Project</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -38,6 +38,8 @@
         <proxyEnabled/>
         <proxyHost/>
         <proxyPort/>
+        <userName>ymmosusew-8384@yopmail.com</userName>
+        <userPassword>test1234</userPassword>
     </properties>
 
     <dependencies>
@@ -130,6 +132,9 @@
         <!--'parallelPlugin' profile is executing tests in parallel - with cucumber-jvm-parallel-plugin-->
         <profile>
             <id>parallelPlugin</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <include.runners>**/Parallel*IT.class</include.runners>
             </properties>
@@ -235,6 +240,8 @@
                     </includes>
                     <systemPropertyVariables>
                         <screenshotDirectory>${project.build.directory}/screenshots</screenshotDirectory>
+                        <userName>${userName}</userName>
+                        <userPassword>${userPassword}</userPassword>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

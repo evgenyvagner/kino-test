@@ -3,31 +3,32 @@ package lv.iljapavlovs.cucumber.pageobjects;
 
 import lv.iljapavlovs.cucumber.config.ApplicationProperties;
 import lv.iljapavlovs.cucumber.core.WebElementHelper;
+import lv.iljapavlovs.cucumber.pageobjects.base.Page;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static lv.iljapavlovs.cucumber.config.ApplicationProperties.ApplicationProperty.APP_URL;
 
-public class GooglePage extends Page {
+public class CinamonKinoPage extends Page {
 
-    @FindBy(how = How.NAME, using = "q")
+    @FindBy(id = "quick-booking__film")
     private WebElement inputField;
 
-    public GooglePage() {
+
+    public CinamonKinoPage() {
         wait.until(ExpectedConditions.visibilityOf(inputField));
     }
 
-    public static GooglePage navigate() {
+    public static CinamonKinoPage navigate() {
         WebElementHelper.navigateToPage(ApplicationProperties.getString(APP_URL));
-        return new GooglePage();
+        return new CinamonKinoPage();
     }
 
-    public GoogleSearchResultPage searchFor(String textToSearchFor) {
+    public QuickBookingBar searchFor(String textToSearchFor) {
         WebElementHelper.sendKeys(inputField, textToSearchFor, Keys.ENTER);
-        return new GoogleSearchResultPage();
+        return new QuickBookingBar();
     }
 
 }

@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static lv.iljapavlovs.cucumber.config.Constants.WAIT_SHORT_SECONDS;
 import static org.junit.Assert.fail;
 
@@ -51,6 +53,22 @@ public class WebElementHelper {
         }
     }
 
+    public static void waitForVisibility(By element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), timeoutInSeconds);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        } catch (TimeoutException te) {
+            log.error(te.getMessage());
+            fail("Element '" + element + "' not found after waiting for it's visibility");
+        } catch (NoSuchElementException ne) {
+            log.error(ne.getMessage());
+            fail("Element '" + element + "' not found, unable to locate it in the DOM");
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            fail("Element '" + element + "' not found");
+        }
+    }
+
     public static void sendKeys(WebElement webElement, CharSequence... keysToSend) {
         WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
         wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -73,6 +91,16 @@ public class WebElementHelper {
         select.selectByVisibleText(value);
     }
 
+    public static void selectByValue(WebElement webElement, String value) {
+        Select select = new Select(webElement);
+        select.selectByValue(value);
+    }
+
+    public static void selectByIndex(WebElement webElement, int index) {
+        Select select = new Select(webElement);
+        select.selectByIndex(index);
+    }
+
     public static void waitForElementToBeClickable(WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -92,6 +120,16 @@ public class WebElementHelper {
     public static String getValue(WebElement webElement) {
         waitForVisibility(webElement);
         return webElement.getAttribute("value");
+    }
+
+    public static void selectByIndex(WebElement dropdownElement, List<WebElement> webElementListFromDrpdwn, int index) {
+        click(dropdownElement);
+        click(webElementListFromDrpdwn.get(index));
+    }
+
+    public static String getAttribute(WebElement webElement, String attribute) {
+        waitForVisibility(webElement);
+        return webElement.getAttribute(attribute);
     }
 
     public static void navigateToPage(String url) {

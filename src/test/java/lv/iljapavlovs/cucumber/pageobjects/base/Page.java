@@ -1,4 +1,4 @@
-package lv.iljapavlovs.cucumber.pageobjects;
+package lv.iljapavlovs.cucumber.pageobjects.base;
 
 import lv.iljapavlovs.cucumber.core.DriverBase;
 import org.openqa.selenium.WebDriver;

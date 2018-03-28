@@ -19,7 +19,6 @@ import org.openqa.selenium.safari.SafariDriver;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static lv.iljapavlovs.cucumber.config.ApplicationProperties.ApplicationProperty.CHROME_DRIVER_PATH;
 import static lv.iljapavlovs.cucumber.config.ApplicationProperties.ApplicationProperty.FIREFOX_BINARY_PATH;
 import static org.openqa.selenium.remote.CapabilityType.PROXY;
 
@@ -85,6 +84,7 @@ public enum DriverType implements DriverSetup {
         }
 
         public RemoteWebDriver getWebDriverObject(MutableCapabilities capabilities) {
+            WebDriverManager.iedriver().setup();
             return new InternetExplorerDriver(capabilities);
         }
     },
@@ -95,6 +95,7 @@ public enum DriverType implements DriverSetup {
         }
 
         public RemoteWebDriver getWebDriverObject(MutableCapabilities capabilities) {
+            WebDriverManager.edgedriver().setup();
             return new EdgeDriver(capabilities);
         }
     },
@@ -123,7 +124,8 @@ public enum DriverType implements DriverSetup {
         }
 
         public RemoteWebDriver getWebDriverObject(MutableCapabilities capabilities) {
-            System.setProperty("webdriver.chrome.driver", ApplicationProperties.getString(CHROME_DRIVER_PATH));
+            WebDriverManager.chromedriver().setup();
+//            System.setProperty("webdriver.chrome.driver", ApplicationProperties.getString(CHROME_DRIVER_PATH));
             return new ChromeDriver(capabilities);
         }
     };

@@ -16,6 +16,7 @@ public class TestDataContext {
 
     private static final TestDataContext INSTANCE = new TestDataContext();
     private Map<String, Supplier<String>> testDataMap = new HashMap<>();
+    private String[] seatArr;
 
     private TestDataContext() {
         this.testDataMap.put("RND3", () -> RandomStringUtils.random(3));

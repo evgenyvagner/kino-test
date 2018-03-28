@@ -6,12 +6,14 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import lombok.extern.slf4j.Slf4j;
 import lv.iljapavlovs.cucumber.core.DriverBase;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.MDC;
 
+import java.io.File;
 import java.util.UUID;
 
 @Slf4j
@@ -33,6 +35,7 @@ public class Hooks {
             try {
                 byte[] screenshot = ((TakesScreenshot) DriverBase.getDriver()).getScreenshotAs(OutputType.BYTES);
                 scenario.embed(screenshot, "image/png");
+                FileUtils.writeByteArrayToFile(new File(String.format("target\\%s.png", scenario.getName())), screenshot);
             } catch (WebDriverException wde) {
                 log.error(wde.getMessage());
             } catch (ClassCastException cce) {

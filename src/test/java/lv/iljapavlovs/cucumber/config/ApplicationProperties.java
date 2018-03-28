@@ -27,7 +27,7 @@ public class ApplicationProperties {
                     setProperty(ApplicationProperty.PROXY_PORT.name, "8080");
 
                     //application URL's
-                    setProperty(ApplicationProperty.APP_URL.name, "https://google.com");
+                    setProperty(ApplicationProperty.APP_URL.name, "https://alfa.cinamonkino.com");
 
                     //Selenium grid settings
                     setProperty(ApplicationProperty.REMOTE_DRIVER.name, "false");
@@ -42,6 +42,9 @@ public class ApplicationProperties {
                     setProperty(ApplicationProperty.FIREFOX_BINARY_PATH.name, "C:\\Users\\ipavlov\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
                     setProperty(ApplicationProperty.CHROME_DRIVER_PATH.name, "src/test/resources/drivers/chromedriver-v2.37.0-win32/chromedriver.exe");
                     setProperty(ApplicationProperty.GECKO_DRIVER_PATH.name, "src/test/resources/drivers/geckodriver-v0.20.0-win64/geckodriver.exe");
+
+                    setProperty(ApplicationProperty.TEST_USER_NAME.name, "DullCakes@mailinator.com ");
+                    setProperty(ApplicationProperty.TEST_USER_PASSWORD.name, "Test1234");
 
                 }
             });
@@ -106,7 +109,9 @@ public class ApplicationProperties {
         CHROME_BINARY_PATH("chromeBinaryPath"),
         FIREFOX_BINARY_PATH("firefoxBinaryPath"),
         CHROME_DRIVER_PATH("chromeDriverPath"),
-        GECKO_DRIVER_PATH("geckoDriverPath");
+        GECKO_DRIVER_PATH("geckoDriverPath"),
+        TEST_USER_NAME("userName"),
+        TEST_USER_PASSWORD("userPassword");
 
         private String name;
 

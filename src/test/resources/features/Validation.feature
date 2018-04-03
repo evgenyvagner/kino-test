@@ -3,6 +3,7 @@ Feature: Validation
 
   Background:
     Given user navigates to Cinamon Kino page
+    And Cinema Selection - user closes popup
     Then Quick Booking - is displayed
     When Quick Booking - user selects ALFA_RIGA movie theater
     And Quick Booking - user selects any movie

@@ -3,13 +3,13 @@ package lv.iljapavlovs.cucumber.pageobjects.ticketpurchase;
 
 import lv.iljapavlovs.cucumber.core.WebElementHelper;
 import lv.iljapavlovs.cucumber.pageobjects.base.Page;
+import lv.iljapavlovs.cucumber.util.RandomUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class SeatSelectionForm extends Page {
 
@@ -48,8 +48,6 @@ public class SeatSelectionForm extends Page {
     public SeatSelectionForm selectAvailableSeatFromRow(int rowNumber) {
 
         List<WebElement> availableSeatsFromRow = getAvailableSeatsFromRow(rowNumber);
-//        int randomIndexInRange = ThreadLocalRandom.current().nextInt(0, availableSeatsFromRow.size());
-
         WebElement element = availableSeatsFromRow.get(0);
         WebElementHelper.scrollToCenterOfScreen(element);
         WebElementHelper.click(element);
@@ -60,33 +58,12 @@ public class SeatSelectionForm extends Page {
         return WebElementHelper.isElementDisplayed(divSeatSelectionSection);
     }
 
-
-//    private int getReversedRowNumber(int rowNumber) {
-//        return gTheaterSeats.size() - rowNumber;
-//    }
-//
-//    private int getParsedRowNumber(String idAttribute) {
-//        String s = idAttribute.split("-")[1];
-//        return Integer.parseInt(s.replaceAll("\\D+", ""));
-//    }
-
     public boolean isSeatAvailableInRow(int rowNumber) {
-//        return getSeatsFromRow(rowNumber).stream()
-////                .filter(el -> getReversedRowNumber(getParsedRowNumber(el.getAttribute("id"))) == rowNumber)
-//                .anyMatch(el -> !el.getAttribute("class").contains("broken"));
-
         return getAvailableSeatsFromRow(rowNumber).size() > 0;
     }
 
-
     public SeatSelectionForm selectAnyAvailableSeat() {
-//        gTheaterSeats.stream()
-//                .filter(el -> !el.getAttribute("class").contains("broken"))
-//                .findFirst()
-//                .orElseThrow(() -> new AssertionError("All seats are booked!"))
-//                .click();
-
-        int randomIndexInRange = ThreadLocalRandom.current().nextInt(0, getAvailableSeats().size());
+        int randomIndexInRange = RandomUtil.getRandomNumberInRange(getAvailableSeats().size());
         WebElement element = getAvailableSeats().get(randomIndexInRange);
         WebElementHelper.scrollToCenterOfScreen(element);
         WebElementHelper.click(element);

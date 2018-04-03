@@ -4,11 +4,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lv.iljapavlovs.cucumber.pageobjects.CinamonKinoPage;
+import lv.iljapavlovs.cucumber.pageobjects.CinemaSelectionPopup;
 import lv.iljapavlovs.cucumber.pageobjects.TopBar;
 
 public class CommonSteps {
     private CinamonKinoPage cinamonKinoPage;
     private TopBar topBar;
+    private CinemaSelectionPopup cinemaSelectionPopup;
 
     @Given("^I navigate to Google page")
     public void iNavigateToGoogleCom() throws Throwable {
@@ -41,5 +43,11 @@ public class CommonSteps {
     @When("^Top Navigation - user goes to his profile$")
     public void topNavigationUserGoesToHisProfile() throws Throwable {
         topBar.goToProfile();
+    }
+
+    @When("^Cinema Selection - user closes popup$")
+    public void cinemaSelectionUserClosesPopup() throws Throwable {
+        cinemaSelectionPopup = new CinemaSelectionPopup();
+        cinemaSelectionPopup.closePopup();
     }
 }

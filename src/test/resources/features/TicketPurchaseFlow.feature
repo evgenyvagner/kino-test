@@ -3,6 +3,7 @@ Feature: Ticket Purchase Flow
 
   Background:
     Given user navigates to Cinamon Kino page
+    And Cinema Selection - user closes popup
     And Top Navigation - user ensures language is in ENG
     When Top Navigation - user navigates to Log In Page
     Then Login - is displayed
@@ -13,12 +14,13 @@ Feature: Ticket Purchase Flow
     Given Quick Booking - is displayed
     When Quick Booking - user selects ALFA_RIGA movie theater
     And Quick Booking - user selects any movie
+#    TODO
 #    And user selects any movie with a session in 5 days
 #    And user selects session in 5 days
     And Quick Booking - user selects any session
     And Quick Booking - user clicks on Buy
-
     Then Ticket Selection - is displayed
+
     When Ticket Selection - member club user adds <numberOfTicketsFirstTry> tickets
     Then store ticket sum in "ticket_sum" variable
 
@@ -26,18 +28,14 @@ Feature: Ticket Purchase Flow
     Then Seat Selection - is displayed
 
     When Seat Selection - user selects <numberOfTicketsFirstTry> tickets on 5th row OR any available seats
-
-#    And store seat selection in "seat_selection" variable
     And store ticket row in "row" variable
     And store ticket seat in "seat" variable
     And Seat Selection - user proceeds to next step
     Then Ticket Confirmation - is displayed
 
     When Ticket Confirmation - ticket sum is "${ticket_sum}"
-#    Then Ticket Confirmation - seat selection is "${seat_selection}"
-
     Then Ticket Confirmation - row is "${row}"
-    Then Ticket Confirmation - seat is "${seat}"
+    And Ticket Confirmation - seat is "${seat}"
 
     When Ticket Confirmation - user changes the order
     Then Ticket Selection - is displayed

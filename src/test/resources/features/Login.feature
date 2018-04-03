@@ -3,6 +3,7 @@ Feature: Login
 
   Background:
     Given user navigates to Cinamon Kino page
+    And Cinema Selection - user closes popup
     And Top Navigation - user ensures language is in ENG
 
   Scenario: Login form

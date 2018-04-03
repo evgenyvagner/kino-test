@@ -11,19 +11,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class QuickBookingSteps {
     private QuickBookingBar quickBookingBar;
 
-    @When("^Quick Booking - user selects session in (\\d+) days$")
-    public void userSelectsSessionInDays(int inDays) throws Throwable {
-        quickBookingBar.selectSessionInDays(inDays);
-    }
-
     @When("^Quick Booking - user clicks on Buy$")
     public void userClicksOnBuy() throws Throwable {
         quickBookingBar.buy();
-    }
-
-    @When("^Quick Booking - user selects any movie with a session in (\\d+) days$")
-    public void userSelectsAnyMovieWithASessionInDays(int inDays) throws Throwable {
-        quickBookingBar.selectSessionInDays(inDays);
     }
 
     @When("^Quick Booking - user selects any session$")

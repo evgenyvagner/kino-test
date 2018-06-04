@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static lv.iljapavlovs.cucumber.config.Constants.WAIT_NORMAL_SECONDS;
 import static lv.iljapavlovs.cucumber.config.Constants.WAIT_SHORT_SECONDS;
+import static lv.iljapavlovs.cucumber.core.DriverBase.getDriver;
 import static org.junit.Assert.fail;
 
 @Slf4j
@@ -27,7 +29,7 @@ public class WebElementHelper {
 
     public static boolean isElementDisplayed(WebElement webElement, int timeOut) {
         try {
-            WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), timeOut);
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeOut);
             wait.until(ExpectedConditions.visibilityOf(webElement));
             return webElement.isDisplayed();
         } catch (NoSuchElementException | TimeoutException ne) {
@@ -38,7 +40,7 @@ public class WebElementHelper {
     }
 
     public static void waitForVisibility(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
+        WebDriverWait wait = new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS);
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException te) {
@@ -54,7 +56,7 @@ public class WebElementHelper {
     }
 
     public static void waitForVisibility(By element, int timeoutInSeconds) {
-        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), timeoutInSeconds);
+        WebDriverWait wait = new WebDriverWait(getDriver(), timeoutInSeconds);
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         } catch (TimeoutException te) {
@@ -70,7 +72,7 @@ public class WebElementHelper {
     }
 
     public static void sendKeys(WebElement webElement, CharSequence... keysToSend) {
-        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
+        WebDriverWait wait = new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS);
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(keysToSend);
@@ -102,13 +104,13 @@ public class WebElementHelper {
     }
 
     public static void waitForElementToBeClickable(WebElement webElement) {
-        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
+        WebDriverWait wait = new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
 
     }
 
     public static WebElement waitForElementToBeClickable(By webElement) {
-        WebDriverWait wait = new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS);
+        WebDriverWait wait = new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS);
         return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
@@ -134,7 +136,7 @@ public class WebElementHelper {
 
     public static void navigateToPage(String url) {
         log.info("Navigating to: " + url);
-        DriverBase.getDriver().get(url);
+        getDriver().get(url);
     }
 
     public static void scrollToCenterOfScreen(WebElement webElement) {
@@ -142,31 +144,31 @@ public class WebElementHelper {
                 + "var elementTop = arguments[0].getBoundingClientRect().top;"
                 + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
 
-        ((JavascriptExecutor) DriverBase.getDriver()).executeScript(scrollElementIntoMiddle, webElement);
+        ((JavascriptExecutor) getDriver()).executeScript(scrollElementIntoMiddle, webElement);
     }
 
     public static void setColorForDebug(WebElement element) {
 
-        JavascriptExecutor js = (JavascriptExecutor) DriverBase.getDriver();
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].setAttribute('style', 'background-color:coral')", element);
     }
 
     public static void clickWithOffset(WebElement element) {
-        Actions builder = new Actions(DriverBase.getDriver());
+        Actions builder = new Actions(getDriver());
         Action action = builder.moveToElement(element, 2, 2).click().build();
         action.perform();
     }
 
     public static void waitForCookie(String cookieName) {
-        new WebDriverWait(DriverBase.getDriver(), WAIT_SHORT_SECONDS).until(d -> d.manage().getCookieNamed(cookieName) != null);
+        new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS).until(d -> d.manage().getCookieNamed(cookieName) != null);
     }
 
     public static boolean isElementPresentByLocator(By locator) {
-        return DriverBase.getDriver().findElements(locator).size() != 0;
+        return getDriver().findElements(locator).size() != 0;
     }
 
     public static void waitUntilElementToDisappear(By by, int timeout) {
-        WebDriverWait webDriverWait = new WebDriverWait(DriverBase.getDriver(), timeout);
+        WebDriverWait webDriverWait = new WebDriverWait(getDriver(), timeout);
         webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
@@ -175,4 +177,14 @@ public class WebElementHelper {
         return element.getCssValue("color");
     }
 
+    public static void waitForLoadingIndicatorDissapear() {
+        try {
+            new WebDriverWait(getDriver(), WAIT_SHORT_SECONDS).until(ExpectedConditions.visibilityOfElementLocated(By.className("loading-indicator")));
+        } catch (TimeoutException e) {
+            log.debug("Progress Indicator is not displayed: " + e);
+        } catch (NoSuchElementException ne) {
+            log.debug("Progress Indicator is not present in DOM: " + ne);
+        }
+        new WebDriverWait(getDriver(), WAIT_NORMAL_SECONDS).until(ExpectedConditions.invisibilityOfElementLocated(By.className("loading-indicator")));
+    }
 }

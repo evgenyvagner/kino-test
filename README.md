@@ -1,4 +1,4 @@
-kino-test  [![Build Status](https://travis-ci.com/iljapavlovs/cucumber-jvm-parallel-template.svg?branch=master)](https://travis-ci.com/iljapavlovs/cucumber-jvm-parallel-template)
+kino-test  [![Build Status](https://travis-ci.com/iljapavlovs/kino-test.svg?branch=master)](https://travis-ci.com/iljapavlovs/kino-test)
 =======================
 
 CucumberJVM template project for running tests in parallel. 

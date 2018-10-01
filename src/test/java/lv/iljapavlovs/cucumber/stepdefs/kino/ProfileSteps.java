@@ -1,16 +1,15 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 import cucumber.api.java.en.Then;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import lv.iljapavlovs.cucumber.model.User;
-import lv.iljapavlovs.cucumber.pageobjects.ProfilePage;
+import lv.iljapavlovs.cucumber.pageobjects.kino.ProfilePage;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-/**
- * Created by ilya.pavlov on 3/28/2018.
- */
+@ScenarioScoped
 public class ProfileSteps {
     private ProfilePage profilePage;
 

@@ -21,6 +21,9 @@ public class ApplicationProperties {
 
 
                     setProperty(ApplicationProperty.BROWSER.name, "chrome");
+                    setProperty(ApplicationProperty.HEADLESS.name, "false");
+                    setProperty(ApplicationProperty.ENABLE_VNC.name, "false");
+                    setProperty(ApplicationProperty.ENABLE_VIDEO.name, "false");
 
                     setProperty(ApplicationProperty.PROXY_ENABLED.name, "false");
                     setProperty(ApplicationProperty.PROXY_HOST.name, "proxy.com");
@@ -28,9 +31,10 @@ public class ApplicationProperties {
 
                     //application URL's
                     setProperty(ApplicationProperty.APP_URL.name, "https://alfa.cinamonkino.com");
+                    setProperty(ApplicationProperty.GOOGLE_URL.name, "https://google.com");
 
                     //Selenium grid settings
-                    setProperty(ApplicationProperty.REMOTE_DRIVER.name, "false");
+                    setProperty(ApplicationProperty.REMOTE_DRIVER.name, "true");
                     setProperty(ApplicationProperty.SELENIUM_GRID_URL.name, "http://localhost:4444/wd/hub");
 
                     setProperty(ApplicationProperty.DESIRED_BROWSER_VERSION.name, "");
@@ -40,8 +44,6 @@ public class ApplicationProperties {
                     //TODO - this should be changed for local execution
                     setProperty(ApplicationProperty.CHROME_BINARY_PATH.name, "");
                     setProperty(ApplicationProperty.FIREFOX_BINARY_PATH.name, "C:\\Users\\ipavlov\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
-                    setProperty(ApplicationProperty.CHROME_DRIVER_PATH.name, "src/test/resources/drivers/chromedriver-v2.37.0-win32/chromedriver.exe");
-                    setProperty(ApplicationProperty.GECKO_DRIVER_PATH.name, "src/test/resources/drivers/geckodriver-v0.20.0-win64/geckodriver.exe");
 
                     setProperty(ApplicationProperty.TEST_USER_NAME.name, "DullCakes@mailinator.com ");
                     setProperty(ApplicationProperty.TEST_USER_PASSWORD.name, "Test1234");
@@ -65,7 +67,7 @@ public class ApplicationProperties {
 
     private static String getString(String propertyName) {
         String currentEnv = System.getProperties().getProperty(
-                ENV.name, System.getenv(ENV.name.toUpperCase().replace('.', '_')));
+            ENV.name, System.getenv(ENV.name.toUpperCase().replace('.', '_')));
 
         if (System.getProperties().containsKey(propertyName)) {
             return System.getProperties().getProperty(propertyName);
@@ -97,7 +99,10 @@ public class ApplicationProperties {
 
     public enum ApplicationProperty {
 
-        ENV("env"), APP_URL("appUrl"), BROWSER("browser"),
+        ENV("env"), APP_URL("appUrl"), GOOGLE_URL("googleUrl"), BROWSER("browser"),
+        HEADLESS("headless"),
+        ENABLE_VIDEO("enableVideo"),
+        ENABLE_VNC("enableVNC"),
         PROXY_ENABLED("proxyEnabled"),
         PROXY_HOST("proxyHost"), PROXY_PORT("proxyPort"),
         WAIT_SHORT_SECONDS("waitShortSeconds"), WAIT_NORMAL_SECONDS("waitNormalSeconds"), WAIT_LONG_SECONDS("waitLongSeconds"),
@@ -108,8 +113,7 @@ public class ApplicationProperties {
         DESIRED_PLATFORM("desiredPlatform"),
         CHROME_BINARY_PATH("chromeBinaryPath"),
         FIREFOX_BINARY_PATH("firefoxBinaryPath"),
-        CHROME_DRIVER_PATH("chromeDriverPath"),
-        GECKO_DRIVER_PATH("geckoDriverPath"),
+
         TEST_USER_NAME("userName"),
         TEST_USER_PASSWORD("userPassword");
 

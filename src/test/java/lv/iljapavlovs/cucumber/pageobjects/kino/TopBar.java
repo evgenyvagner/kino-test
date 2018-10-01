@@ -1,4 +1,4 @@
-package lv.iljapavlovs.cucumber.pageobjects;
+package lv.iljapavlovs.cucumber.pageobjects.kino;
 
 
 import lv.iljapavlovs.cucumber.core.WebElementHelper;

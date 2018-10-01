@@ -1,21 +1,18 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import lv.iljapavlovs.cucumber.pageobjects.CinamonKinoPage;
-import lv.iljapavlovs.cucumber.pageobjects.CinemaSelectionPopup;
-import lv.iljapavlovs.cucumber.pageobjects.TopBar;
+import cucumber.runtime.java.guice.ScenarioScoped;
+import lv.iljapavlovs.cucumber.pageobjects.kino.CinamonKinoPage;
+import lv.iljapavlovs.cucumber.pageobjects.kino.CinemaSelectionPopup;
+import lv.iljapavlovs.cucumber.pageobjects.kino.TopBar;
 
+@ScenarioScoped
 public class CommonSteps {
     private CinamonKinoPage cinamonKinoPage;
     private TopBar topBar;
     private CinemaSelectionPopup cinemaSelectionPopup;
-
-    @Given("^I navigate to Google page")
-    public void iNavigateToGoogleCom() throws Throwable {
-        cinamonKinoPage = CinamonKinoPage.navigate();
-    }
 
     @Given("^user navigates to Cinamon Kino page$")
     public void userNavigatesToCinamonKinoPage() throws Throwable {

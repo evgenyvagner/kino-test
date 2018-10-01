@@ -1,17 +1,18 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import lv.iljapavlovs.cucumber.pageobjects.ticketpurchase.TicketForm;
-import lv.iljapavlovs.cucumber.util.TestDataContext;
+import cucumber.runtime.java.guice.ScenarioScoped;
+import lv.iljapavlovs.cucumber.pageobjects.kino.ticketpurchase.TicketForm;
+import lv.iljapavlovs.cucumber.util.DataHolder;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
+@ScenarioScoped
 public class TicketSelectionSteps {
     private TicketForm ticketForm;
 
-    private TestDataContext testDataContext = TestDataContext.getInstance();
+    private DataHolder dataHolder = DataHolder.getInstance();
 
     @When("^Ticket Selection - member club user adds (\\d+) tickets$")
     public void ticketFormUserAddsTickets(int ticketCount) throws Throwable {
@@ -29,7 +30,7 @@ public class TicketSelectionSteps {
     @Then("^store ticket sum in \"([^\"]*)\" variable$")
     public void storeTicketSumInVariable(String ticketSumVariable) throws Throwable {
         String ticketSum = ticketForm.getTicketSum();
-        testDataContext.getTestDataMap().put(ticketSumVariable, () -> ticketSum);
+        dataHolder.getTestDataMap().put(ticketSumVariable, () -> ticketSum);
     }
 
     @Then("^Ticket Selection - user proceeds to next step$")

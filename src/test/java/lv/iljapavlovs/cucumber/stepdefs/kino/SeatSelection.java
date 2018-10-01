@@ -1,19 +1,20 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import lv.iljapavlovs.cucumber.pageobjects.ticketpurchase.SeatSelectionForm;
-import lv.iljapavlovs.cucumber.util.TestDataContext;
+import cucumber.runtime.java.guice.ScenarioScoped;
+import lv.iljapavlovs.cucumber.pageobjects.kino.ticketpurchase.SeatSelectionForm;
+import lv.iljapavlovs.cucumber.util.DataHolder;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
+@ScenarioScoped
 public class SeatSelection {
     SeatSelectionForm seatSelectionForm;
-    private TestDataContext testDataContext = TestDataContext.getInstance();
+    private DataHolder dataHolder = DataHolder.getInstance();
 
     @Then("^Seat Selection - is displayed$")
     public void seatSelectionIsDisplayed() throws Throwable {
@@ -34,11 +35,11 @@ public class SeatSelection {
         switch (rowSeat) {
             case "row":
                 String row = split[0].trim();
-                testDataContext.getTestDataMap().put(variable, () -> row);
+                dataHolder.getTestDataMap().put(variable, () -> row);
                 break;
             case "seat":
                 String[] array = Arrays.copyOfRange(split, 1, split.length);
-                testDataContext.setSeatArr(array);
+                dataHolder.setSeatArr(array);
                 break;
         }
     }

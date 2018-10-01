@@ -7,6 +7,7 @@ import cucumber.api.java.Before;
 import lombok.extern.slf4j.Slf4j;
 import lv.iljapavlovs.cucumber.core.DriverBase;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -26,7 +27,9 @@ public class Hooks {
         String sessionId = ((RemoteWebDriver) DriverBase.getDriver()).getSessionId().toString();
         log.info("Starting Scenario: \"" + scenario.getName() + "\" with Session ID: " + sessionId);
         DriverBase.getDriver().manage().deleteAllCookies();
-        DriverBase.getDriver().manage().window().maximize();
+//        DriverBase.getDriver().manage().window().maximize();
+        DriverBase.getDriver().manage().window().setSize(new Dimension(1600,900));
+
     }
 
     @After
@@ -36,10 +39,8 @@ public class Hooks {
                 byte[] screenshot = ((TakesScreenshot) DriverBase.getDriver()).getScreenshotAs(OutputType.BYTES);
                 scenario.embed(screenshot, "image/png");
                 FileUtils.writeByteArrayToFile(new File(String.format("target\\%s.png", scenario.getName())), screenshot);
-            } catch (WebDriverException wde) {
+            } catch (WebDriverException | ClassCastException wde) {
                 log.error(wde.getMessage());
-            } catch (ClassCastException cce) {
-                log.error(cce.getMessage());
             }
         }
         log.info(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " + (scenario.isFailed() ? "FAILED" : "PASSED"));

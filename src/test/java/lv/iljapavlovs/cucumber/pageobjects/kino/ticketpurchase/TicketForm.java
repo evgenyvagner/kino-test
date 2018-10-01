@@ -1,4 +1,4 @@
-package lv.iljapavlovs.cucumber.pageobjects.ticketpurchase;
+package lv.iljapavlovs.cucumber.pageobjects.kino.ticketpurchase;
 
 
 import lv.iljapavlovs.cucumber.core.WebElementHelper;

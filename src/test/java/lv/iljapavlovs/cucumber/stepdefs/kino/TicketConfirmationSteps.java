@@ -1,19 +1,20 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import lv.iljapavlovs.cucumber.pageobjects.ticketpurchase.TicketConfirmationSection;
+import cucumber.runtime.java.guice.ScenarioScoped;
+import lv.iljapavlovs.cucumber.pageobjects.kino.ticketpurchase.TicketConfirmationSection;
 import lv.iljapavlovs.cucumber.util.StringUtil;
-import lv.iljapavlovs.cucumber.util.TestDataContext;
+import lv.iljapavlovs.cucumber.util.DataHolder;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
+@ScenarioScoped
 public class TicketConfirmationSteps {
     TicketConfirmationSection ticketConfirmationSection;
-    private TestDataContext testDataContext = TestDataContext.getInstance();
+    private DataHolder dataHolder = DataHolder.getInstance();
 
     @Then("^Ticket Confirmation - is displayed$")
     public void summarySelectionIsDisplayed() throws Throwable {
@@ -40,7 +41,7 @@ public class TicketConfirmationSteps {
                 assertThat(actualRow).isEqualToIgnoringCase(expected);
                 break;
             case "seat":
-                String[] expectedSeats = testDataContext.getSeatArr();
+                String[] expectedSeats = dataHolder.getSeatArr();
                 assertThat(actualSeats).containsExactlyInAnyOrder(expectedSeats);
                 break;
         }

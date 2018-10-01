@@ -1,13 +1,15 @@
-package lv.iljapavlovs.cucumber.stepdefs;
+package lv.iljapavlovs.cucumber.stepdefs.kino;
 
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.guice.ScenarioScoped;
 import lv.iljapavlovs.cucumber.enums.TheaterLocation;
-import lv.iljapavlovs.cucumber.pageobjects.QuickBookingBar;
+import lv.iljapavlovs.cucumber.pageobjects.kino.QuickBookingBar;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@ScenarioScoped
 public class QuickBookingSteps {
     private QuickBookingBar quickBookingBar;
 

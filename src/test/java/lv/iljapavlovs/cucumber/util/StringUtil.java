@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 @Slf4j
 public class StringUtil {
-    private static TestDataContext testData = TestDataContext.getInstance();
+    private static DataHolder testData = DataHolder.getInstance();
 
     public static String findAndReplaceContextVariables(String text) {
         if (text != null) {

@@ -1,14 +1,15 @@
 package lv.iljapavlovs.cucumber.core;
 
+import static lv.iljapavlovs.cucumber.config.Constants.HEADLESS;
+import static lv.iljapavlovs.cucumber.config.Constants.IS_REMOTE_DRIVER;
+import static lv.iljapavlovs.cucumber.config.Constants.USE_WEBDRIVERMANAGER;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lv.iljapavlovs.cucumber.config.ApplicationProperties;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.Proxy;
+import java.util.HashMap;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -19,21 +20,13 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
-import java.util.Arrays;
-import java.util.HashMap;
 import org.openqa.selenium.safari.SafariOptions;
-
-import static lv.iljapavlovs.cucumber.config.ApplicationProperties.ApplicationProperty.FIREFOX_BINARY_PATH;
-import static lv.iljapavlovs.cucumber.config.Constants.HEADLESS;
-import static lv.iljapavlovs.cucumber.config.Constants.IS_REMOTE_DRIVER;
-import static org.openqa.selenium.remote.CapabilityType.PROXY;
 
 public enum DriverType implements DriverSetup {
 
     FIREFOX {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            if(!IS_REMOTE_DRIVER){
+            if(!IS_REMOTE_DRIVER && USE_WEBDRIVERMANAGER){
                 WebDriverManager.firefoxdriver().setup();
             }
 
@@ -46,7 +39,7 @@ public enum DriverType implements DriverSetup {
     },
     CHROME {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            if(!IS_REMOTE_DRIVER){
+            if(!IS_REMOTE_DRIVER && USE_WEBDRIVERMANAGER){
                 WebDriverManager.chromedriver().setup();
             }
 
@@ -64,7 +57,7 @@ public enum DriverType implements DriverSetup {
     },
     IE {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            if(!IS_REMOTE_DRIVER){
+            if(!IS_REMOTE_DRIVER && USE_WEBDRIVERMANAGER){
                 WebDriverManager.iedriver().setup();
             }
 
@@ -84,7 +77,7 @@ public enum DriverType implements DriverSetup {
     },
     EDGE {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            if(!IS_REMOTE_DRIVER){
+            if(!IS_REMOTE_DRIVER && USE_WEBDRIVERMANAGER){
                 WebDriverManager.edgedriver().setup();
             }
 
@@ -105,7 +98,7 @@ public enum DriverType implements DriverSetup {
     },
     OPERA {
         public RemoteWebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            if(!IS_REMOTE_DRIVER){
+            if(!IS_REMOTE_DRIVER && USE_WEBDRIVERMANAGER){
                 WebDriverManager.operadriver().setup();
             }
 

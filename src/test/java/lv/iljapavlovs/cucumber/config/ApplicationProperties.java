@@ -48,6 +48,10 @@ public class ApplicationProperties {
                     setProperty(ApplicationProperty.TEST_USER_NAME.name, "DullCakes@mailinator.com ");
                     setProperty(ApplicationProperty.TEST_USER_PASSWORD.name, "Test1234");
 
+
+                    setProperty(ApplicationProperty.USE_WEBDRIVERMANAGER.name, "true");
+
+
                 }
             });
             put("local", new Properties() {
@@ -115,7 +119,8 @@ public class ApplicationProperties {
         FIREFOX_BINARY_PATH("firefoxBinaryPath"),
 
         TEST_USER_NAME("userName"),
-        TEST_USER_PASSWORD("userPassword");
+        TEST_USER_PASSWORD("userPassword"),
+        USE_WEBDRIVERMANAGER("useWDManager");
 
         private String name;
 

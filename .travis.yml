@@ -22,6 +22,11 @@ before_install:
 #- docker pull selenoid/vnc:chrome_68.0
 #- docker-compose -f docker/docker-compose-selenoid.yml up
 
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.22.0/geckodriver-v0.22.0-linux64.tar.gz
+- mkdir geckodriver
+- tar -xzf geckodriver-v0.22.0-linux64 -C geckodriver
+- export PATH=$PATH:$PWD/geckodriver
+
 install: true
 
 
@@ -36,5 +41,6 @@ jobs:
   - stage: build
     script: ./mvnw clean compile
   - stage: test
-    script: ./mvnw verify -Dbrowser=firefox -Dheadless=true -Dcucumber.options="--tags @google"
+    script: ./mvnw verify -Dbrowser=firefox -Dheadless=true -Dcucumber.options="--tags @google" -DuseWDManager=false
+
 

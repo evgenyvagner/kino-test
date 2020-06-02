@@ -15,7 +15,7 @@ This project was based on [Selenium-Maven-Template](https://github.com/Ardesco/S
     * More on this read [here](http://automationrhapsody.com/running-cucumber-tests-in-parallel/).
 ### Command for execution
 ```
-./mvnw clean verify -P [nogrid OR grid],[parallel OR parallelPlugin] -Dthreads=[number of parallel threads]
+mvn clean verify -P [nogrid OR grid],[parallel OR parallelPlugin] -Dthreads=[number of parallel threads]
 ```
 
 * *parallel* - when using separate "runner" class per one thread
@@ -26,7 +26,7 @@ This project was based on [Selenium-Maven-Template](https://github.com/Ardesco/S
 
 For example, invoking 
 ```
-./mvnw clean verify -P parallelPlugin,nogrid -Dthreads=3 -Dbrowser=chrome -Dcucumber.options="--tags @google"
+mvn clean verify -P parallelPlugin,nogrid -Dthreads=3 -Dbrowser=chrome -Dcucumber.options="--tags @google"
 ``` 
 will execute tests in parallel 3 threads on local machine and using *cucumber-jvm-parallel-plugin* plugin. In addition, `-Dbrowser` setting will set browser to Chrome.
 
@@ -69,12 +69,12 @@ docker-compose scale selenium-hub=1 firefox=5 chrome=5
 
 1. Pull desired browser images for testing
 ```
-docker pull selenoid/vnc:chrome_68.0
+docker pull selenoid/vnc:chrome_83.0
 ```
 
 Optionally, if you want video recording enabled, then corresponding image needs to be pulled
 ```
-docker pull selenoid/video-recorder
+docker pull selenoid/video-recorder:latest-release
 ```
 2. Start Selenoid
 ```

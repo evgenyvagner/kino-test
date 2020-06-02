@@ -17,24 +17,24 @@ public class ApplicationProperties {
                     //timeout and wait time properties
                     setProperty(ApplicationProperty.WAIT_SHORT_SECONDS.name, "3");
                     setProperty(ApplicationProperty.WAIT_NORMAL_SECONDS.name, "5");
-                    setProperty(ApplicationProperty.WAIT_LONG_SECONDS.name, "60");
-
+                    setProperty(ApplicationProperty.WAIT_LONG_SECONDS.name, "360");
 
                     setProperty(ApplicationProperty.BROWSER.name, "chrome");
                     setProperty(ApplicationProperty.HEADLESS.name, "false");
-                    setProperty(ApplicationProperty.ENABLE_VNC.name, "false");
-                    setProperty(ApplicationProperty.ENABLE_VIDEO.name, "false");
+                    setProperty(ApplicationProperty.ENABLE_VNC.name, "true");
+                    setProperty(ApplicationProperty.ENABLE_VIDEO.name, "true");
 
                     setProperty(ApplicationProperty.PROXY_ENABLED.name, "false");
                     setProperty(ApplicationProperty.PROXY_HOST.name, "proxy.com");
                     setProperty(ApplicationProperty.PROXY_PORT.name, "8080");
+
 
                     //application URL's
                     setProperty(ApplicationProperty.APP_URL.name, "https://alfa.cinamonkino.com");
                     setProperty(ApplicationProperty.GOOGLE_URL.name, "https://google.com");
 
                     //Selenium grid settings
-                    setProperty(ApplicationProperty.REMOTE_DRIVER.name, "false");
+                    setProperty(ApplicationProperty.REMOTE_DRIVER.name, "true");
                     setProperty(ApplicationProperty.SELENIUM_GRID_URL.name, "http://localhost:4444/wd/hub");
 
                     setProperty(ApplicationProperty.DESIRED_BROWSER_VERSION.name, "");

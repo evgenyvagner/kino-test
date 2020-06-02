@@ -78,7 +78,7 @@ docker pull selenoid/video-recorder:latest-release
 ```
 2. Start Selenoid
 ```
-docker-compose -f docker/docker-compose-selenoid.yml up
+docker-compose -f docker/docker-compose-selenoid.yml up --force-recreate
 ```
 
 Then you can check simple status page with UI updates at
